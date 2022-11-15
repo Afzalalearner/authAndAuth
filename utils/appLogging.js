@@ -6,7 +6,7 @@ const logger=bunyan.createLogger({
     streams:[
         {path:path.join(__dirname,'..','logs','error.log'),level:"error"},
         {path:path.join(__dirname,'..','logs','app.log'),level:"info"},
-        {stream:process.stdout}
+        // {stream:process.stdout}
 
     ]
 })
