@@ -30,6 +30,36 @@ const signup=async (req,res)=>{
 
 }
 }
+
+const signin=async (req,res)=>{
+    const data=req.body;
+    const user=await userRepository.getByEmail(data.email)
+
+    if(!user){
+        res.status(400)
+        res.send('Email ID doesnt exist')
+        return;
+    }
+
+    const valid=await crypto.verify(data.password,user.password)
+    if(valid){
+
+        res.status(200)
+        res.send('Success')
+    }else{
+        res.status(401)
+        res.send('Invalid Email or Password')
+    }
+
+
+    
+    
+
+}
+
+
+
 module.exports={
     signup,
+    signin
 }
